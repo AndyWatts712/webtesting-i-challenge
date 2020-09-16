@@ -47,6 +47,31 @@ describe('enhancer', () => {
         })
     })
     describe('fail(item)', () => {
-        
+        it('if enhancement < 15, durability decreased by 5', function() {
+            const item = {
+                name: "Whatever",
+                durability: 50,
+                enhancement: 10
+            }
+            expect(enhancer.fail(item).durability).toBe(45)
+        })
+        it('if enhancement > 14, durability decreased by 10', function() {
+            const item = {
+                name: "Whatever",
+                durability: 50,
+                enhancement: 16
+            }
+            expect(enhancer.fail(item).durability).toBe(40)
+        })
+        it('if enhancement is greater than 16, enhancement -1', function() {
+            const item = {
+                name: "Whatever",
+                durability: 50,
+                enhancement: 17
+            }
+            expect(enhancer.fail(item).enhancement).toBe(16)
+            expect(enhancer.fail(item).durability).toBe(40)
+        })
     })
+    
 })
